@@ -17,12 +17,13 @@ use App\Http\Controllers\PeminjamanController;
 |
 */
 
+    Route::get('/login', [PetugasController::class, 'index']);
+    Route::post('/login', [PetugasController::class, 'login']);
+    Route::get('/logout', [PetugasController::class, 'logout']);
 
 
- 
-Route::get('/login', [PetugasController::class, 'index']);
-Route::post('/login', [PetugasController::class, 'login']);
 
+Route::middleware(['login'])->group(function () {    
     Route::get('/', [UserController::class, 'index']);
     Route::get('/user', [UserController::class, 'show']);
     Route::post('/user-create', [UserController::class, 'store']);
@@ -41,4 +42,5 @@ Route::post('/login', [PetugasController::class, 'login']);
     Route::get('/peminjaman-{id}-update', [PeminjamanController::class, 'update']);
     Route::put('/peminjaman-{id}-update', [PeminjamanController::class, 'edit']);
     Route::delete('/peminjaman-{id}-delete', [PeminjamanController::class, 'destroy']);
+});
 

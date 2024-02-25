@@ -28,6 +28,12 @@
     </div>
 @endif
 
+@if (Session::has('status'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Buku Tidak Bisa Di Hapus Karena Sedang Dipinjam <strong>User</strong>
+    </div>  
+@endif
+
 <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr>

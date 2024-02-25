@@ -92,8 +92,6 @@
                         <option>{{$item->userid}}</option>   
                         @endforeach
                     </select>
-
-                    {{-- <input type="number" class="form-control" name="userid"> --}}
                   </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">ID Buku</label>
@@ -103,8 +101,6 @@
                         <option>{{$item->bukuid}}</option>   
                         @endforeach
                     </select>                   
-
-                    {{-- <input type="number" class="form-control" name="bukuid"> --}}
                   </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Tanggal Pinjam</label>
@@ -117,7 +113,7 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Status Peminjaman</label>
                     <select name="statuspeminjaman" id="" class="form-control">
-                        <option value="Kembali">--Pilih--</option>
+                        <option value="">--Pilih--</option>
                         <option value="Kembali">Kembali</option>
                         <option value="Belum Kembali">Belum Kembali</option>
                     </select>

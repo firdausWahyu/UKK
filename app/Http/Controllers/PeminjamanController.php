@@ -28,6 +28,13 @@ class PeminjamanController extends Controller
             'bukuid' => 'required|exists:buku,bukuid',
             'tanggalpeminjaman' => 'required',
             'statuspeminjaman' => 'required'
+        ],[
+            'userid.required' => 'ID User tidak boleh kosong',
+            'userid.exists' => 'ID User tidak Exist',
+            'bukuid.required' => 'ID Buku tidak boleh kosong',
+            'bukuid.exists' => 'ID Buku tidak Exist',
+            'tanggalpeminjaman.required' => 'Tanggal Peminjaman Tidak Boleh Kosong',
+            'statuspeminjaman.required' => 'Status Peminjaman Peminjaman Tidak Boleh Kosong',
         ]);
         peminjamanModel::create($request->all());
         return redirect('/peminjaman');   
@@ -42,6 +49,13 @@ class PeminjamanController extends Controller
             'bukuid' => 'required|exists:buku,bukuid',
             'tanggalpeminjaman' => 'required',
             'statuspeminjaman' => 'required'
+        ],[
+            'userid.required' => 'ID User tidak boleh kosong',
+            'userid.exists' => 'ID User tidak Exist',
+            'bukuid.required' => 'ID Buku tidak boleh kosong',
+            'bukuid.exists' => 'ID Buku tidak Exist',
+            'tanggalpeminjaman.required' => 'Tanggal Peminjaman Tidak Boleh Kosong',
+            'statuspeminjaman.required' => 'Status Peminjaman Tidak Boleh Kosong',
         ]);
 
         $peminjaman = peminjamanModel::find($id);

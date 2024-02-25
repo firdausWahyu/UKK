@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BukuController extends Controller
 {
@@ -23,6 +24,14 @@ class BukuController extends Controller
             'penulis' => 'required|max:30',
             'penerbit' => 'required|max:50',
             'tahunterbit' => 'required|integer'
+        ],[
+            'judul.required' => 'Judul Tidak Boleh Kosong',
+            'judul.max' => 'Judul Terlalu Panjang',
+            'penulis.required' => 'Penulis Tidak Boleh Kosong',
+            'penulis.max' => 'Penulis Terlalu Panjang',
+            'penerbit.required' => 'penerbit Tidak Boleh Kosong',
+            'tahunterbit.required' => 'tahun Tidak Boleh Kosong',
+            'penerbit.max' => 'Penerbit Terlalu Panjang',
         ]);
         BukuModel::create($request->all());
         return redirect('/buku');   
@@ -37,6 +46,14 @@ class BukuController extends Controller
             'penulis' => 'required|max:30',
             'penerbit' => 'required|max:50',
             'tahunterbit' => 'required|integer'
+        ],[
+            'judul.required' => 'Judul Tidak Boleh Kosong',
+            'judul.max' => 'Judul Terlalu Panjang',
+            'penulis.required' => 'Penulis Tidak Boleh Kosong',
+            'penulis.max' => 'Penulis Terlalu Panjang',
+            'penerbit.required' => 'penerbit Tidak Boleh Kosong',
+            'tahunterbit.required' => 'tahun Tidak Boleh Kosong',
+            'penerbit.max' => 'Penerbit Terlalu Panjang',
         ]);
 
         $buku = bukuModel::find($id);
@@ -45,8 +62,13 @@ class BukuController extends Controller
         // dd($request->all());
     }
     public function destroy($id) {
-        $buku = bukuModel::find($id);
-        $buku->delete();
-        return redirect('/buku');
+        try {
+            $buku = bukuModel::find($id);
+            $buku->delete();
+            return redirect('/buku');
+        }  catch (\Illuminate\Database\QueryException $e) {
+            Session::flash('status', 'failed');
+            return redirect('/buku');
+        }
     }
 }

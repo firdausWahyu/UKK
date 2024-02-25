@@ -36,7 +36,27 @@
         </div>
       <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Status Peminjaman</label>
-          <input type="text" class="form-control" name="statuspeminjaman" value="{{$peminjaman->statuspeminjaman}}">
+          <select name="statuspeminjaman" class="form-control">
+            @if ($peminjaman->statuspeminjaman == 'Kembali')
+                <option value="Kembali">
+                  Kembali
+                </option>
+              @else
+                <option value=" Belum Kembali">
+                  Belum Kembali
+                </option>
+              @endif
+              @if ($peminjaman->statuspeminjaman !== 'Kembali')
+              <option value="Kembali">
+                Kembali
+              </option>
+              @else
+              <option value=" Belum Kembali">
+
+                Belum Kembali
+              </option>
+              @endif
+          </select>
         </div>
       <button type="submit" class="btn btn-success"> Update </button>
   

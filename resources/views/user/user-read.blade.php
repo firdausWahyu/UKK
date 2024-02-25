@@ -27,7 +27,11 @@
         </ul>
     </div>
 @endif
-
+@if (Session::has('status'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        User Tidak Bisa Di Hapus Karena Sedang Meminjam <strong>Buku</strong>
+    </div>  
+@endif
 <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr>
@@ -53,7 +57,7 @@
           <form action="/user-{{$item->userid}}-delete" method="post">
           @method('delete')
           @csrf
-          
+            {{-- <input type="hidden" value="{{}}"> --}}
               <button type="submit" class="btn btn-danger my-2">Hapus</button>
   
           </form>

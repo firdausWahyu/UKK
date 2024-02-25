@@ -9,14 +9,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    @if ($message = Session::get('sukses'))
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Username atau Password Salah</strong> Coba Lagi
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
+    {{-- session --}}
+    @if (Session::has('status4'))
+    <div class=" d-flex align-items-center justify-content-center mt-2">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Login Gagal</strong> Email atau Password Salah
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>  
+    </div>
+    @endif      
+{{-- session --}}
+
+    {{-- session --}}
+    @if (Session::has('status2'))
+    <div class=" d-flex align-items-center justify-content-center mt-2">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Anda Telah Melakukan <strong>Logout</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>  
+    </div>
+    @endif      
+{{-- session --}}
 <div class="cotainer">
-    <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="d-flex justify-content-center align-items-center flex-c">
         <form action="/login" method="post" class="border p-3 my-3">
             @csrf
             <h2 class="text-center">Login</h2>

@@ -3,12 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Petugas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
-class login 
+class noLogin
 {
     /**
      * Handle an incoming request.
@@ -20,10 +17,8 @@ class login
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            return $next($request);
-        }else{
-            Session::flash('status3', 'failed');
-            return redirect('/login');
+            return redirect('/');
         }
+        return $next($request);
     }
 }

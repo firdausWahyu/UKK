@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Petugas extends Model
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+
+class Petugas extends Model implements Authenticatable
 {
-    use HasFactory;
+    use AuthenticatableTrait;
 
     protected $table = 'petugas';
 }

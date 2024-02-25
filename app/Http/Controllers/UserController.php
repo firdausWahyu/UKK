@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\UserModel;
 use Illuminate\Http\Request;
+use App\Models\peminjamanModel;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -21,9 +23,17 @@ class UserController extends Controller
     }
     public function store(Request $request) {
         $validated = $request->validate([
-            'email' => 'required|max:30|email',
+            'email' => 'required|max:99|email',
             'namalengkap' => 'required|max:50',
             'alamat' => 'required|max:50'
+        ],[
+            'email.required' => 'Email Tidak Boleh Kosong',
+            'email.max' => 'Email Terlalu Panjang',
+            'email.email' => 'Masukan Email Yang Benar',
+            'namalengkap.required' => 'Nama Lengkap Tidak Boleh Kosong',
+            'namalengkap.max' => 'Nama Lengkap Terlalu Panjang',
+            'alamat.required' => 'alamat Tidak Boleh Kosong',
+            'alamat.max' => 'alamat Terlalu Panjang',
         ]);
         UserModel::create($request->all());
         return redirect('/user');   
@@ -37,6 +47,14 @@ class UserController extends Controller
             'email' => 'required|max:30|email',
             'namalengkap' => 'required|max:50',
             'alamat' => 'required|max:50'
+        ],[
+            'email.required' => 'Email Tidak Boleh Kosong',
+            'email.max' => 'Email Terlalu Panjang',
+            'email.email' => 'Masukan Email Yang Benar',
+            'namalengkap.required' => 'Nama Lengkap Tidak Boleh Kosong',
+            'namalengkap.max' => 'Nama Lengkap Terlalu Panjang',
+            'alamat.required' => 'alamat Tidak Boleh Kosong',
+            'alamat.max' => 'alamat Terlalu Panjang',
         ]);
 
         $user = UserModel::find($id);
@@ -44,9 +62,16 @@ class UserController extends Controller
         return redirect('/user');
         // dd($request->all());
     }
-    public function destroy($id) {
+    public function destroy(Request $request, $id) {
+    try {
         $user = UserModel::find($id);
         $user->delete();
         return redirect('/user');
+    } catch (\Illuminate\Database\QueryException $e) {
+        Session::flash('status', 'failed');
+        return redirect('/user');
+    }
     }
 }
+
+
